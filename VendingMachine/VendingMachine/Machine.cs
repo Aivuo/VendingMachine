@@ -30,12 +30,16 @@ namespace VendingMachine
 
             foreach (var product in products)
             {
-                if (product.Name.ToLower()
-                                .Take(2)
-                                .ToString()                                 //Funkar inte
-                                .Contains(userInput.ToLower()
-                                                    .Take(2)
-                                                    .ToString()))
+
+                string productName = product.Name;
+                productName = productName.Take(2)
+                                         .ToString()
+                                         .ToLower();            //Fel fortfarande men felet är att den inte sätter ihop Take2 till en string av Char utan tar hela skiten
+                userInput = userInput.Take(2).                   //Så variabelnamn och kallelser Allt. Något som kanske kan funka är en flatten! Kolla upp
+                                     .ToString()
+                                     .ToLower();
+
+                if (productName == userInput)
                 {
                     if (money >= product.Price)
                     {
