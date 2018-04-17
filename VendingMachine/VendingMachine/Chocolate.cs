@@ -8,5 +8,11 @@ namespace VendingMachine
 {
     class Chocolate : Product
     {
+
+        public Chocolate()
+        {
+            Name = "Chocolate";
+            Price = 20;
+        }
     }
 }

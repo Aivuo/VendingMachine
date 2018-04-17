@@ -8,12 +8,15 @@ namespace VendingMachine
 {
     abstract class Product
     {
-        protected string name = null;
-        protected int price = 0;
+        string name = null;
+        int price = 0;
 
-        public virtual void Buy()
+        public string Name { get => name; set => name = value; }
+        public int Price { get => price; set => price = value; }
+
+        public virtual Product Buy()
         {
-
+            return this;
         }
 
         public virtual void Examine()

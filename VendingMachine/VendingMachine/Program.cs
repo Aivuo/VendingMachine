@@ -18,13 +18,16 @@ namespace VendingMachine
 
         private static void Menu(int money, int[] valueDenomination)
         {
+            Machine machine = new Machine();
+
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine("\tMoney: {0:N0}sek" +
                                 "\n\t1: Add money" +
                                 "\n\t2: Buy something" +
-                                "\n\t3: Leave", money);
+                                "\n\t3: Bought stuff" +
+                                "\n\t4: Leave", money);
 
                 var input = Console.ReadKey();
 
@@ -37,10 +40,14 @@ namespace VendingMachine
                         break;
                     case ConsoleKey.D2:
                     case ConsoleKey.NumPad2:
-
+                        money = machine.BuyProduct(money);
                         break;
                     case ConsoleKey.D3:
                     case ConsoleKey.NumPad3:
+                        machine.CheckPockets();
+                        break;
+                    case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         money = DumpMoney(money, valueDenomination);
                         return;
                     default:
@@ -51,25 +58,28 @@ namespace VendingMachine
 
         private static int DumpMoney(int money, int[] valueDenomination)
         {
-            int i = valueDenomination.Count() - 1;
-            string type = "Bill";
-            while (money > 0)
+            if (money > 0)
             {
-                if (money >= valueDenomination[i])
+                int i = valueDenomination.Count() - 1;
+                string type = "Bill";
+                while (money > 0)
                 {
-                    money -= valueDenomination[i];
-                    Console.WriteLine("\t{0}sek {1}", valueDenomination[i], type);
-                }
-                if (money < valueDenomination[i])
-                {
-                    i--;
-                    if (i == 1)
+                    if (money >= valueDenomination[i])
                     {
-                        type = "Coin";
+                        money -= valueDenomination[i];
+                        Console.WriteLine("\t{0}sek {1}", valueDenomination[i], type);
+                    }
+                    if (money < valueDenomination[i])
+                    {
+                        i--;
+                        if (i == 1)
+                        {
+                            type = "Coin";
+                        }
                     }
                 }
+                Console.ReadKey(); 
             }
-            Console.ReadKey();
             return money;
         }
 
