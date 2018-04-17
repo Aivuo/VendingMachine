@@ -28,7 +28,9 @@ namespace VendingMachine
 
             foreach (var product in products)
             {
-                if (product.Name.ToLower() == userInput.ToLower())
+                if (product.Name.ToLower()
+                                .First() == userInput.ToLower()
+                                                     .First())
                 {
                     if (money >= product.Price)
                     {

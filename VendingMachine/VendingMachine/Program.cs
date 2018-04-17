@@ -67,7 +67,7 @@ namespace VendingMachine
                     if (money >= valueDenomination[i])
                     {
                         money -= valueDenomination[i];
-                        Console.WriteLine("\t{0}sek {1}", valueDenomination[i], type);
+                        Console.WriteLine("\t{0} sek {1}", valueDenomination[i], type);
                     }
                     if (money < valueDenomination[i])
                     {
