@@ -16,6 +16,8 @@ namespace VendingMachine
         public Machine()
         {
             products.Add(new Soda());
+            products.Add(new Soda(16, "Caco-Calo"));
+            products.Add(new Soda(20, "Spreti"));
             products.Add(new Chocolate());
         }
 
@@ -29,13 +31,13 @@ namespace VendingMachine
             foreach (var product in products)
             {
                 if (product.Name.ToLower()
-                                .First() == userInput.ToLower()
-                                                     .First())
+                                .Take(2) == userInput.ToLower()
+                                                     .Take(2))
                 {
                     if (money >= product.Price)
                     {
                         money -= product.Price;
-                        var bought = product.Buy();
+                        var bought = product.Buy(product.Price, product.Name);
                         boughtProducts.Add(bought);
                         Console.WriteLine("\tHere's your {0}." +
                             "\n\tYou are welcome",product.Name);

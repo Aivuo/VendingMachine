@@ -17,7 +17,14 @@ namespace VendingMachine
             weight = 200;
         }
 
-        public override Product Buy()
+        public Chocolate(int weightIn, int priceIn, string nameIn)
+        {
+            Name = nameIn;
+            Price = priceIn;
+            weight = weightIn;
+        }
+
+        public override Product Buy(int priceIn, string nameIn)
         {
             Chocolate chocolate = new Chocolate();
             return chocolate;

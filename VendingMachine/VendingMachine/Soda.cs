@@ -17,9 +17,23 @@ namespace VendingMachine
             cl = 33;
         }
 
-        public override Product Buy()
+        public Soda( int priceIn, string nameIn)
         {
-            Soda soda = new Soda();
+            Name = nameIn;
+            Price = priceIn;
+            if (priceIn == 16)
+            {
+                cl = 50;
+            }
+            else if (priceIn == 20)
+            {
+                cl = 100;
+            }
+        }
+
+        public override Product Buy(int priceIn,string nameIn)
+        {
+            Soda soda = new Soda(priceIn, nameIn);
             return soda;
         }
 

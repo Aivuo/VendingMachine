@@ -14,7 +14,7 @@ namespace VendingMachine
         public string Name { get => name; set => name = value; }
         public int Price { get => price; set => price = value; }
 
-        public virtual Product Buy()
+        public virtual Product Buy(int PriceIn, string name)
         {
             return this;
         }
