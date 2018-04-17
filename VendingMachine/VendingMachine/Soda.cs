@@ -8,10 +8,13 @@ namespace VendingMachine
 {
     class Soda : Product
     {
+        int cl = 0;
+
         public Soda()
         {
             Name = "Soda";
             Price = 10;
+            cl = 33;
         }
 
         public override Product Buy()
@@ -22,7 +25,9 @@ namespace VendingMachine
 
         public override void Examine()
         {
-            base.Examine();
+            Console.WriteLine("\n\t\t{0}" +
+                    "\n\t\t\t{1}cl" +
+                    "\n\t\t\t{2}sek", Name, cl, Price);
         }
 
         public override void Use()

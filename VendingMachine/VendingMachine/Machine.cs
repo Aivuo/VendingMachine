@@ -44,6 +44,7 @@ namespace VendingMachine
                     }
                 }
             }
+            Console.ReadKey();
                 return money;
         }
 
@@ -53,8 +54,7 @@ namespace VendingMachine
             {
                 foreach (var product in productsIn)
                 {
-                    Console.WriteLine("\n\t\t{0}" +
-                                        "\n\t\t\t{1}sek",product.Name, product.Price);
+                    product.Examine();
                 }
             }
             else
@@ -65,7 +65,13 @@ namespace VendingMachine
 
         internal void CheckPockets()
         {
-            PrintProduct(boughtProducts);
+            if (boughtProducts.Any())
+            {
+                foreach (var product in boughtProducts)
+                {
+                    product.Examine();
+                } 
+            }
             Console.ReadKey();
         }
     }
