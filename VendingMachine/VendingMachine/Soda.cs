@@ -17,7 +17,7 @@ namespace VendingMachine
             cl = 33;
         }
 
-        public Soda( int priceIn, string nameIn)
+        public Soda(int priceIn, string nameIn)
         {
             Name = nameIn;
             Price = priceIn;

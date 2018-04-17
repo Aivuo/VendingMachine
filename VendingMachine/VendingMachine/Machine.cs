@@ -31,8 +31,11 @@ namespace VendingMachine
             foreach (var product in products)
             {
                 if (product.Name.ToLower()
-                                .Take(2) == userInput.ToLower()
-                                                     .Take(2))
+                                .Take(2)
+                                .ToString()                                 //Funkar inte
+                                .Contains(userInput.ToLower()
+                                                    .Take(2)
+                                                    .ToString()))
                 {
                     if (money >= product.Price)
                     {

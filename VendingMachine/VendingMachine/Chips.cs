@@ -13,7 +13,7 @@ namespace VendingMachine
 
         }
 
-        public override Product Buy(string nameIn)
+        public override Product Buy(int priceIn, string nameIn)
         {
             Chips soda = new Chips();
             return soda;
