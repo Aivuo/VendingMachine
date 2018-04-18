@@ -32,22 +32,12 @@ namespace VendingMachine
 
             userInput = GetFirstLetters(userInput);
 
-            //userInput = userInput.Take(2);                   
-            //userInput = userInput.ToLower();
-
             foreach (var product in products)
             {
 
                 productName = product.Name;
                 productName = GetFirstLetters(productName);
-                //productName = (string)productName.Take(2);
-                //productName = productName.ToLower();
 
-                //Fel fortfarande men felet är att den inte sätter ihop Take2 till en string av Char utan tar hela skiten
-                //Så variabelnamn och kallelser Allt. Något som kanske kan funka är en flatten! Kolla upp. Update: It did not work...
-
-                //if (userInput.ToLower()
-                //             .Take(2).Contains(product.Name.First() + product.Name.Skip(1).First()))
                 if (userInput == productName)
                 {
                     if (money >= product.Price)
