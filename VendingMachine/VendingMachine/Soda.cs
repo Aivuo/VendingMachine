@@ -21,7 +21,7 @@ namespace VendingMachine
         {
             Name = nameIn;
             Price = priceIn;
-            if (priceIn == 16)
+            if (priceIn == 15)
             {
                 cl = 50;
             }
@@ -46,7 +46,7 @@ namespace VendingMachine
 
         public override void Use()
         {
-            base.Use();
+            Console.WriteLine("\tDrink the {0}", Name);
         }
     }
 }

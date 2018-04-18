@@ -12,13 +12,15 @@ namespace VendingMachine
         List<Product> boughtProducts = new List<Product>();
 
         string userInput = null;
+        string productName = null;
 
         public Machine()
         {
             products.Add(new Soda());
-            products.Add(new Soda(16, "Caco-Calo"));
+            products.Add(new Soda(15, "Caco-Calo"));
             products.Add(new Soda(20, "Spreti"));
             products.Add(new Chocolate());
+            products.Add(new Chips());
         }
 
         public int BuyProduct(int money)
@@ -28,18 +30,25 @@ namespace VendingMachine
             Console.WriteLine("Write the name of your desired product");
             userInput = Console.ReadLine();
 
+            userInput = GetFirstLetters(userInput);
+
+            //userInput = userInput.Take(2);                   
+            //userInput = userInput.ToLower();
+
             foreach (var product in products)
             {
 
-                string productName = product.Name;
-                productName = productName.Take(2)
-                                         .ToString()
-                                         .ToLower();            //Fel fortfarande men felet är att den inte sätter ihop Take2 till en string av Char utan tar hela skiten
-                userInput = userInput.Take(2).                   //Så variabelnamn och kallelser Allt. Något som kanske kan funka är en flatten! Kolla upp
-                                     .ToString()
-                                     .ToLower();
+                productName = product.Name;
+                productName = GetFirstLetters(productName);
+                //productName = (string)productName.Take(2);
+                //productName = productName.ToLower();
 
-                if (productName == userInput)
+                //Fel fortfarande men felet är att den inte sätter ihop Take2 till en string av Char utan tar hela skiten
+                //Så variabelnamn och kallelser Allt. Något som kanske kan funka är en flatten! Kolla upp. Update: It did not work...
+
+                //if (userInput.ToLower()
+                //             .Take(2).Contains(product.Name.First() + product.Name.Skip(1).First()))
+                if (userInput == productName)
                 {
                     if (money >= product.Price)
                     {
@@ -47,16 +56,25 @@ namespace VendingMachine
                         var bought = product.Buy(product.Price, product.Name);
                         boughtProducts.Add(bought);
                         Console.WriteLine("\tHere's your {0}." +
-                            "\n\tYou are welcome",product.Name);
+                            "\n\tYou are welcome", product.Name);
                     }
                     else
                     {
-                        Console.WriteLine("\tYou do not have enough money for that {0}",product.Name);
+                        Console.WriteLine("\tYou do not have enough money for that {0}", product.Name);
                     }
                 }
             }
             Console.ReadKey();
-                return money;
+            return money;
+        }
+
+        private string GetFirstLetters(string change)
+        {
+            change = new string(change.ToLower()
+                                         .Take(2)
+                                         .ToArray());
+
+            return change;
         }
 
         private void PrintProduct(List<Product> productsIn)
@@ -81,9 +99,31 @@ namespace VendingMachine
                 foreach (var product in boughtProducts)
                 {
                     product.Examine();
-                } 
+                }
+
+
+
+                Console.WriteLine("\tWrite the name of the product you want to use");
+                userInput = Console.ReadLine();
+                userInput = GetFirstLetters(userInput);
+
+                foreach (var product in boughtProducts)
+                {
+                    productName = product.Name;
+                    productName = GetFirstLetters(productName);
+
+                    if (userInput == productName)
+                    {
+                        product.Use();
+                        boughtProducts.Remove(product);
+                        Console.ReadKey();
+                        return;
+                    }
+                }
+
             }
             Console.ReadKey();
         }
     }
 }
+

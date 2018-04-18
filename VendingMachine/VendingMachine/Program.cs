@@ -64,17 +64,28 @@ namespace VendingMachine
                 string type = "Bill";
                 while (money > 0)
                 {
-                    if (money >= valueDenomination[i])
+                    if (money > 4)
                     {
-                        money -= valueDenomination[i];
-                        Console.WriteLine("\t{0} sek {1}", valueDenomination[i], type);
-                    }
-                    if (money < valueDenomination[i])
-                    {
-                        i--;
-                        if (i == 1)
+                        if (money >= valueDenomination[i])
                         {
-                            type = "Coin";
+                            money -= valueDenomination[i];
+                            Console.WriteLine("\t{0} sek {1}", valueDenomination[i], type);
+                        }
+                        if (money < valueDenomination[i])
+                        {
+                            i--;
+                            if (i == 1)
+                            {
+                                type = "Coin";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        while (money > 0)
+                        {
+                            Console.WriteLine("\t1 sek coin");
+                            money--;
                         }
                     }
                 }

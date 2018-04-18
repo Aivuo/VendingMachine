@@ -39,7 +39,7 @@ namespace VendingMachine
 
         public override void Use()
         {
-            base.Use();
+            Console.WriteLine("\tEat the {0}", Name);
         }
     }
 }
